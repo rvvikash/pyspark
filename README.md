@@ -6,3 +6,5 @@ type of write mode in pyspark ?
 map vs flatmap?
 broadcast variable ?
 read data from hdfs and write in table ?
+catalyst optmiser ?
+wide transformation and narrowdown transformation?
