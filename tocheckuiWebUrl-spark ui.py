@@ -1,2 +1,0 @@
-import pyspark
-spark_context.sparkContext.uiWebUrl
