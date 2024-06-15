@@ -1,0 +1,16 @@
+interview question :
+
+Cinema table:
+
+Write a solution to report the movies with an odd-numbered ID and a description that is not "boring".
+ Return the result table ordered by rating in descending order.
+
+how to create table in hive ?
+
+how to save the data in json format,orc,parquet?
+
+how to use list comprehnsion ?
+
+how to use lambda with map ?
+
+how you will create data frame from dictionary and json ?
