@@ -19,7 +19,7 @@ CREATE TABLE cinema (
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
-STORED AS TEXTFILE;
+STORED AS TEXTFILE, STORED AS TEXTFILE LOCATION 'user/entity/site/inbound/CSS_INSTALLATION_PARTITIONED';;
 
 -- Create the table with ORC format
 CREATE TABLE cinema (
@@ -83,3 +83,32 @@ df_parquet = spark.read.parquet('/path/to/parquetfile.parquet').select("id", "mo
 
 # Show the DataFrame
 df_parquet.show()
+
+
+create table with partion and bucket ?
+
+CREATE TABLE IF NOT EXISTS employees_table (
+    emp_id INT,
+    salary DECIMAL(10, 2)
+)
+PARTITIONED BY (department STRING)
+CLUSTERED BY (emp_id) INTO 4 BUCKETS
+STORED AS ORC
+
+how to insert specfic data in particular partition
+
+set hive.exec.dynamic.partition=true;  
+set hive.exec.dynamic.partition.mode=nonstrict;  
+
+drop table tmp.table1;
+
+create table tmp.table1(  
+col_a string,col_b int)  
+partitioned by (ptdate string,ptchannel string)  
+row format delimited  
+fields terminated by '\t' ;  
+
+insert overwrite table tmp.table1 partition(ptdate,ptchannel)  
+select col_a,count(1) col_b,ptdate,ptchannel
+from tmp.table2
+group by ptdate,ptchannel,col_a ;
