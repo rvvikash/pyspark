@@ -112,3 +112,38 @@ insert overwrite table tmp.table1 partition(ptdate,ptchannel)
 select col_a,count(1) col_b,ptdate,ptchannel
 from tmp.table2
 group by ptdate,ptchannel,col_a ;
+
+
+
+
+
+
+from pyspark import SparkContext
+
+sc = SparkContext.getOrCreate()
+
+# List of sentences
+sentences = [
+    "Hi my name is vikash",
+    "Hi my name is raj"
+]
+
+# Step 1: Create RDD
+rdd = sc.parallelize(sentences)
+
+# Step 2: Split each sentence into words
+rdd_words = rdd.flatMap(lambda line: line.split())
+
+# Step 3: Create key-value pairs (word, 1)
+rdd_pairs = rdd_words.map(lambda word: (word.lower(), 1))  # optional: .lower() to count case-insensitive
+
+# Step 4: Reduce by key to count words
+word_counts = rdd_pairs.reduceByKey(lambda a, b: a + b)
+
+# Step 5: Collect result
+output = word_counts.collect()
+
+# Print result
+for word, count in output:
+    print(word, count)
+
