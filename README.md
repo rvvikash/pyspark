@@ -8,3 +8,6 @@ broadcast variable ?
 read data from hdfs and write in table ?
 catalyst optmiser ?
 wide transformation and narrowdown transformation?
+
+
+https://datavidhya.com/blog/apache-spark-data-engineering-interview-questions/
